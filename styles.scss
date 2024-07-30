@@ -1,0 +1,273 @@
+// Primary colors
+$blue: #5156D2;
+$lime: #B6E171;
+
+// Neutral colors
+$white: #FFFFFF;
+$dark-blue: #24252D;
+$dark-grey: #464655;
+
+// Font families
+$manrope: "Manrope", sans-serif;
+$sometype: "Sometype Mono", monospace;
+
+@mixin font-style($font-fam, $color, $size, $weight){
+    font-family: $font-fam;
+    color: $color;
+    font-size: $size;
+    font-weight: $weight
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+body {
+    background-color: $dark-blue;
+    min-width: 300px;
+    min-height: 500px;
+}
+
+nav {
+    position: fixed;
+    width: 100%;
+    padding: 0.5rem;
+    z-index: 1000;
+    background-color:rgba(36, 37, 45, 0.7);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    li, a {
+        all: unset;
+        @include font-style($manrope, $white, 0.7rem, 800);
+        img.logo {
+            width: 2rem;
+        }
+        padding: 0 0.3rem;
+    }
+}
+
+h1 {   
+    @include font-style($manrope, $white, 2.8rem, 800);
+}
+
+h2 {
+    &.portfolio {
+        @include font-style($manrope, $lime, 2rem, 800);
+        line-height: 1;
+        &.blue {
+            color: $blue;
+        }
+
+        &.grey {
+            color: $dark-grey;
+        }
+    }
+}
+
+h3 {
+    @include font-style($sometype, $lime, 1rem, 400);
+    .bold {
+        font-weight: 700;
+    }
+    &.hello {
+        color: $blue;
+        font-weight: 700;
+        font-size: 1.5rem;
+    }
+}
+
+section#home {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "intro"
+        "title"
+        "welcome";
+    align-items: end;
+    .intro-text {
+        grid-area: intro;
+        padding-left: 2rem;
+    }
+    .title {
+        grid-area: title;
+        text-align: center;
+        align-self: center;
+        
+        h1.software {
+            padding-right: 1rem;
+            line-height: 1;
+        }
+        h1.dev {
+            padding-left: 1rem;
+        }
+    }
+    .welcome-text {
+        grid-area: welcome;
+        text-align: right;
+    }
+}
+
+p#binary {
+    @include font-style($sometype, $dark-grey, 36px, 400);
+    position: absolute;
+    top: 4rem;
+    right: -0.3rem;
+}
+
+img.robot {
+    position: absolute;
+    bottom: 0;
+    left: -1.5rem;
+    z-index: -1;
+}
+
+section {
+    padding-top: 4rem;
+    height: 100vh;
+}
+
+@media only screen and (min-width: 400px) and (max-width: 600px) {
+    p#binary {
+        font-size: 2.6rem;
+    }
+
+    img.robot {
+        width: 16rem;
+        left: -2rem;
+    }
+
+    .title h1 {
+        font-size: 3.5rem;
+        &.software {
+            text-align: left;
+            padding-left: 3rem;
+        }
+        &.dev {
+            text-align: right;
+            padding-right: 2rem;
+            line-height: 1.3;
+        }
+    }
+
+    .welcome-text h2.portfolio{
+        font-size: 2.6rem;
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1050px) {
+    nav {
+        padding: 1rem;
+        li, a {
+            font-size: 1rem;
+        }
+    }
+
+    p#binary {
+        font-size: 3rem;
+        top: 5rem;
+    }
+
+    img.robot {
+        width: 18rem;
+        left: 1rem;
+    }
+
+    section#home {
+        .intro-text {
+            padding-left: 3rem;
+            h3.hello {
+                font-size: 2.5rem;
+                line-height: 1.5;
+            }
+        }
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        .title {
+            padding-top: 3rem;
+            h1 {
+                font-size: 5rem;
+                &.software {
+                    padding-right: 8rem;
+                }
+                &.dev {
+                    padding-left: 8rem;
+                    line-height: 1.3;
+                }
+            }
+        }
+    
+        .welcome-text h2.portfolio{
+            font-size: 4rem;
+        }
+    }
+    
+}
+
+@media only screen and (width > 1050px) {
+    nav {
+        padding: 1.5rem 1rem;
+        li, a {
+            font-size: 1.2rem;
+        }
+    }
+    
+    p#binary {
+        font-size: 3.5rem;
+        top: 6rem;
+    }
+
+    img.robot {
+        width: 25rem;
+        left: 1rem;
+    }
+
+    section#home {
+        .intro-text {
+            padding-left: 4rem;
+            h3 {
+                font-size: 1.5rem;
+                line-height: 1.5;
+                &.hello {
+                    font-size: 2.5rem;
+                }
+            }
+        }
+    
+        .title {
+            align-self: end;
+            h1 {
+                font-size: 7rem;
+                text-align: center;
+                &.software {
+                    padding-right: 10rem;
+                }
+                &.dev {
+                    padding-left: 10rem;
+                    line-height: 1.3;
+                }
+            }
+            
+        }
+    
+        .welcome-text {
+            h3 {
+                font-size: 1.5rem;
+                line-height: 1.5;
+            }
+            h2.portfolio {
+                font-size: 4rem;
+            }
+            
+        }
+    }
+    
+}
