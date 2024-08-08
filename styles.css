@@ -1,20 +1,21 @@
+/* Base styles for mobile devices
+ * (min-width: 320px) and (max-width: 480px) */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 body {
   background-color: #24252D;
   min-width: 300px;
-  min-height: 500px;
+  min-height: 550px;
 }
 
 nav {
   position: fixed;
-  width: 100%;
-  padding: 0.5rem;
+  width: 100vw;
+  padding: 0.5rem 1rem;
   z-index: 1000;
   background-color: rgba(36, 37, 45, 0.7);
   display: flex;
@@ -28,6 +29,17 @@ nav li, nav a {
   font-size: 0.7rem;
   font-weight: 800;
   padding: 0 0.3rem;
+  cursor: pointer;
+}
+@media (min-width: 481px) {
+  nav li, nav a {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 1024px) {
+  nav li, nav a {
+    font-size: 1.2rem;
+  }
 }
 nav li img.logo, nav a img.logo {
   width: 2rem;
@@ -36,15 +48,17 @@ nav li img.logo, nav a img.logo {
 h1 {
   font-family: "Manrope", sans-serif;
   color: #FFFFFF;
-  font-size: 2.8rem;
+  font-size: clamp(2.8rem, 0.94rem + 9.3vw, 7rem);
   font-weight: 800;
 }
 
-h2.portfolio {
+h2 {
   font-family: "Manrope", sans-serif;
   color: #B6E171;
-  font-size: 2rem;
+  font-size: clamp(2rem, 1.11rem + 4.44vw, 4rem);
   font-weight: 800;
+}
+h2.portfolio {
   line-height: 1;
 }
 h2.portfolio.blue {
@@ -57,7 +71,7 @@ h2.portfolio.grey {
 h3 {
   font-family: "Sometype Mono", monospace;
   color: #B6E171;
-  font-size: 1rem;
+  font-size: clamp(1rem, 0.77rem + 1.1vw, 1.5rem);
   font-weight: 400;
 }
 h3 .bold {
@@ -66,10 +80,22 @@ h3 .bold {
 h3.hello {
   color: #5156D2;
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: calc(clamp(1rem, 0.77rem + 1.1vw, 1.5rem) + 0.5rem);
+}
+
+p {
+  font-family: "Sometype Mono", monospace;
+  color: #FFFFFF;
+  font-size: calc(clamp(1rem, 0.77rem + 1.1vw, 1.5rem) - 0.3rem);
+  font-weight: 400;
+}
+
+section {
+  padding-top: 4rem;
 }
 
 section#home {
+  height: 100vh;
   position: relative;
   display: grid;
   grid-template-columns: 1fr;
@@ -82,29 +108,36 @@ section#home .intro-text {
 }
 section#home .title {
   grid-area: title;
-  text-align: center;
   align-self: center;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
-section#home .title h1.software {
-  padding-right: 1rem;
+section#home .title h1 {
   line-height: 1;
 }
+section#home .title h1.software {
+  text-align: left;
+  padding-left: 2rem;
+}
 section#home .title h1.dev {
-  padding-left: 1rem;
+  text-align: right;
+  padding-right: 1rem;
 }
 section#home .welcome-text {
   grid-area: welcome;
   text-align: right;
+  padding-right: 1rem;
 }
 
 p#binary {
   font-family: "Sometype Mono", monospace;
   color: #464655;
-  font-size: 36px;
+  font-size: clamp(2rem, 1.11rem + 4.44vw, 4rem);
   font-weight: 400;
   position: absolute;
   top: 4rem;
   right: -0.3rem;
+  cursor: default;
 }
 
 img.robot {
@@ -112,123 +145,181 @@ img.robot {
   bottom: 0;
   left: -1.5rem;
   z-index: -1;
+  width: clamp(14rem, 9.11rem + 24.4vw, 25rem);
 }
 
-section {
-  padding-top: 4rem;
-  height: 100vh;
+section#about {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: "pics" "about-me" "text" "skills";
+}
+section#about h2 {
+  grid-area: about-me;
+  padding-left: 1.5rem;
+}
+section#about p {
+  grid-area: text;
+  line-height: 1.5;
+  padding: 0.5rem 1.5rem;
+}
+section#about .pics {
+  grid-area: pics;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-areas: ". pic-1" "pic-2 pic-1" "pic-2 pic-3" ". pic-3";
+  padding: 0 1rem;
+  gap: 0.7rem;
+}
+section#about img {
+  border-radius: 1rem;
+  align-self: center;
+  justify-self: start;
+}
+section#about img.alien {
+  grid-area: pic-1;
+  width: clamp(7.5rem, 2.05rem + 29vw, 16rem);
+}
+section#about img.greece {
+  grid-area: pic-2;
+  width: calc(clamp(7.5rem, 2.05rem + 29vw, 16rem) + 0.5rem);
+  justify-self: end;
+}
+section#about img.fall {
+  grid-area: pic-3;
+  width: calc(clamp(7.5rem, 2.05rem + 29vw, 16rem) - 0.5rem);
+  align-self: start;
+}
+section#about .skills-list {
+  grid-area: skills;
+  padding: 0.5rem 1.5rem;
+}
+section#about .skills-list h2.skills {
+  font-size: clamp(1.5rem, 0.9rem + 3.2vw, 3rem);
+  color: #5156D2;
+  padding: 0 0 1rem 0;
+}
+section#about .skills-list ul {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+section#about .skills-list ul li {
+  font-family: "Sometype Mono", monospace;
+  color: #FFFFFF;
+  font-size: clamp(0.6rem, 0.36rem + 1.28vw, 1.2rem);
+  font-weight: 400;
+  background-color: #5156D2;
+  border-radius: 2rem;
+  padding: 0.5rem 0.9rem;
+  text-wrap: nowrap;
 }
 
-@media only screen and (min-width: 400px) and (max-width: 600px) {
-  p#binary {
-    font-size: 2.6rem;
-  }
+/* Tablet styles
+ * (min-width: 481px) and (max-width: 768px) */
+@media only screen and (min-width: 481px) {
   img.robot {
-    width: 16rem;
     left: -2rem;
   }
-  .title h1 {
-    font-size: 3.5rem;
-  }
   .title h1.software {
-    text-align: left;
     padding-left: 3rem;
   }
   .title h1.dev {
-    text-align: right;
     padding-right: 2rem;
-    line-height: 1.3;
   }
-  .welcome-text h2.portfolio {
-    font-size: 2.6rem;
+  section#about img {
+    width: clamp(13rem, 7rem + 20vw, 20rem);
+    padding: 0.4rem;
+  }
+  section#about h2, section#about p, section#about .skills-list {
+    padding: 0.5rem 2.5rem;
   }
 }
-@media only screen and (min-width: 601px) and (max-width: 1050px) {
-  nav {
-    padding: 1rem;
-  }
-  nav li, nav a {
-    font-size: 1rem;
-  }
+/* Laptop styles
+ * (min-width: 769px) and (max-width: 1024px) */
+@media only screen and (min-width: 769px) {
   p#binary {
-    font-size: 3rem;
     top: 5rem;
   }
   img.robot {
-    width: 18rem;
     left: 1rem;
+  }
+  section#home .intro-text {
+    padding-left: 2.5rem;
+  }
+  section#home .intro-text h3.hello {
+    line-height: 1.5;
+  }
+  section#home .title h1.software {
+    padding-left: 4rem;
+  }
+  section#home .title h1.dev {
+    padding-right: 3rem;
+  }
+  section#home .welcome-text {
+    padding-right: 2.5rem;
+  }
+  section#about {
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: "about-me about-me" "text pics" "text pics" "skills pics";
+  }
+  section#about h2, section#about p, section#about .skills-list {
+    padding: 0 3rem;
+  }
+  section#about .pics {
+    display: flex;
+    flex-direction: column;
+  }
+  section#about .pics img {
+    width: clamp(7.5rem, 2.05rem + 29vw, 16rem);
+    place-self: center;
+  }
+}
+/* Desktop styles
+ * (min-width: 1025px) */
+@media only screen and (min-width: 1025px) {
+  nav {
+    padding: 1rem 1.5rem;
   }
   section#home .intro-text {
     padding-left: 3rem;
   }
-  section#home .intro-text h3.hello {
-    font-size: 2.5rem;
-    line-height: 1.5;
+  section#about {
+    grid-template-columns: 1fr;
+    grid-template-areas: "pics" "about-me" "text" "skills";
   }
-  section#home h3 {
-    font-size: 1.5rem;
+  section#about .pics {
+    flex-direction: row;
+    padding: 1rem 3rem;
   }
-  section#home .title {
-    padding-top: 3rem;
-  }
-  section#home .title h1 {
-    font-size: 5rem;
-  }
-  section#home .title h1.software {
-    padding-right: 8rem;
-  }
-  section#home .title h1.dev {
-    padding-left: 8rem;
-    line-height: 1.3;
-  }
-  section#home .welcome-text h2.portfolio {
-    font-size: 4rem;
+  section#about .skills-list {
+    padding-top: 1rem;
   }
 }
 @media only screen and (width > 1050px) {
   nav {
-    padding: 1.5rem 1rem;
-  }
-  nav li, nav a {
-    font-size: 1.2rem;
+    padding: 1.5rem 2rem;
   }
   p#binary {
-    font-size: 3.5rem;
     top: 6rem;
   }
   img.robot {
-    width: 25rem;
-    left: 1rem;
+    left: 3rem;
   }
   section#home .intro-text {
     padding-left: 4rem;
   }
-  section#home .intro-text h3 {
-    font-size: 1.5rem;
-    line-height: 1.5;
-  }
-  section#home .intro-text h3.hello {
-    font-size: 2.5rem;
-  }
   section#home .title {
-    align-self: end;
-  }
-  section#home .title h1 {
-    font-size: 7rem;
-    text-align: center;
+    align-self: center;
   }
   section#home .title h1.software {
-    padding-right: 10rem;
+    padding-left: 15%;
   }
   section#home .title h1.dev {
-    padding-left: 10rem;
-    line-height: 1.3;
+    padding-right: 15%;
   }
-  section#home .welcome-text h3 {
-    font-size: 1.5rem;
-    line-height: 1.5;
-  }
-  section#home .welcome-text h2.portfolio {
-    font-size: 4rem;
+  section#home .welcome-text {
+    padding-right: 3rem;
   }
 }/*# sourceMappingURL=styles.css.map */
