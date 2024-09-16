@@ -101,6 +101,9 @@ p {
 
 section {
     padding-top: 4rem;
+    &.pages {
+        margin: 0 4rem 0 4rem;
+    }
 }
 
 section#home {
@@ -196,7 +199,6 @@ section#about {
     }
 
     img {
-        
         border-radius: 1rem;
         align-self: center;
         justify-self: start;
@@ -214,7 +216,6 @@ section#about {
             grid-area: pic-3;
             width: calc($img-width - 0.5rem);
             align-self: start;
-            
         }
     }
 
@@ -239,10 +240,21 @@ section#about {
                 @include font-style($sometype, $white, $font-size-xs, 400);
                 background-color: $blue;
                 border-radius: 2rem;
-                padding: 0.5rem 0.9rem;
+                padding: 0.5em 0.9em;
                 text-wrap: nowrap;
             }
         }
+    }
+}
+
+section#projects {
+    
+    .fm, .proj {
+        padding: 2rem;
+    }
+
+    .title {
+        font-size: 2rem;
     }
 }
 

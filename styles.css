@@ -93,6 +93,9 @@ p {
 section {
   padding-top: 4rem;
 }
+section.pages {
+  margin: 0 4rem 0 4rem;
+}
 
 section#home {
   height: 100vh;
@@ -212,8 +215,15 @@ section#about .skills-list ul li {
   font-weight: 400;
   background-color: #5156D2;
   border-radius: 2rem;
-  padding: 0.5rem 0.9rem;
+  padding: 0.5em 0.9em;
   text-wrap: nowrap;
+}
+
+section#projects .fm, section#projects .proj {
+  padding: 2rem;
+}
+section#projects .title {
+  font-size: 2rem;
 }
 
 /* Tablet styles
